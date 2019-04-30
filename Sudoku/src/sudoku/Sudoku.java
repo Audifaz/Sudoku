@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 /**
  *
  * @author Emilio Águila Escalante - 163009
- *         Jorge Tenorio - 
+ *         Jorge Tenorio - 162107
  *         Mauricio Tenorio - 162106
  */
 public class Sudoku extends JFrame implements ActionListener{
