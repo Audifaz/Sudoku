@@ -27,7 +27,8 @@ public class Sudoku extends JFrame implements ActionListener{
     public final int frameYOrigin = 100;
     public final int buttonW =60;
     public final int buttonH =59;    
-    JMenu menu;    
+    JMenu menu;
+    public int counter=0;
     
     
     public static void main(String[] args) {
@@ -99,7 +100,8 @@ public class Sudoku extends JFrame implements ActionListener{
         setJMenuBar(jmenubar);
         jmenubar.add(menu); 
         /* End Menus */
-        int i, j, k, l,a,b;
+        /*Buttons*/
+        int i, j, a,b;
         JButton[][] MatrizBotones = new JButton[9][9];
         a=25;
         b=24;
@@ -120,7 +122,7 @@ public class Sudoku extends JFrame implements ActionListener{
                         MatrizBotones[i][j].setBounds(a,b,buttonW,buttonH);
                         MatrizBotones[i][j].addActionListener(this);
                         
-                        if(a % 3 ==0){
+                        if(a % 3 ==0||a % 5 == 0){
                             a=a+1;
                         }
                         a=a+61;
@@ -141,7 +143,21 @@ public class Sudoku extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() instanceof JButton){
         JButton clickedButton = (JButton)e.getSource();
-        String buttonText = clickedButton.getText();    
+        String buttonText = clickedButton.getText(); 
+        if(e.getSource() instanceof JButton){
+        JButton clickedButton = (JButton)e.getSource();
+        String buttonText = clickedButton.getText(); 
+        counter++;  
+        if(counter==10){
+        counter=0;    
+        }        
+        if(counter==0){
+          clickedButton.setText("");  
+        }
+        else
+        clickedButton.setText(Integer.toString(counter));
+        setTitle(buttonText);
+        }            
         setTitle(buttonText);
         }
     else{  
