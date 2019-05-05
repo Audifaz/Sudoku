@@ -29,6 +29,7 @@ public class Sudoku extends JFrame implements ActionListener{
     public final int buttonH =59;    
     JMenu menu;
     public int counter=0;
+    public JButton[][] botones;
     
     
     public static void main(String[] args) {
@@ -102,7 +103,7 @@ public class Sudoku extends JFrame implements ActionListener{
         /* End Menus */
         /*Buttons*/
         int i, j, a,b;
-        JButton[][] MatrizBotones = new JButton[9][9];
+        botones = new JButton[9][9];
         a=25;
         b=24;
         //Inspirado en el código de https://prografacilsite.wordpress.com/2017/06/15/como-crear-una-matriz-grafica-de-botones-en-java-dinamicamente/
