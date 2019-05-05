@@ -141,32 +141,53 @@ public class Sudoku extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() instanceof JButton){
-        JButton clickedButton = (JButton)e.getSource();
-        String buttonText = clickedButton.getText(); 
-        if(e.getSource() instanceof JButton){
-        JButton clickedButton = (JButton)e.getSource();
-        String buttonText = clickedButton.getText(); 
-        counter++;  
-        if(counter==10){
-        counter=0;    
-        }        
-        if(counter==0){
-          clickedButton.setText("");  
-        }
-        else
-        clickedButton.setText(Integer.toString(counter));
-        setTitle(buttonText);
-        }            
-        setTitle(buttonText);
-        }
-    else{  
-        JMenuItem clickedMenu = (JMenuItem)e.getSource();
-        String menuText = clickedMenu.getText();  
-        if( ((menuText.equals("Exit")))){
-            System.exit(0);
-        }
-    }         
-        
-    }
+            if(e.getSource() instanceof JButton){
+                JButton clickedButton = (JButton)e.getSource();
+                String buttonText = clickedButton.getText();
+                        if(buttonText.equals("")){
+                                counter=1;
+                                buttonText="1";
+                                clickedButton.setText(Integer.toString(counter));
+                                }
+                                else
+                                {        
+                                        if(Integer.parseInt(buttonText)>8){
+                                            clickedButton.setText("");
+                                            buttonText="0";
+                                        }
+                                        else{
+                                            counter=Integer.parseInt(buttonText)+1;
+                                        }
+                                        if( !buttonText.equals("0")){            
+                                                clickedButton.setText(Integer.toString(counter));       
+                                        }
+                                }
+            }
+            else
+            {  
+                JMenuItem clickedMenu = (JMenuItem)e.getSource();
+                String menuText = clickedMenu.getText();  
+                       switch(menuText){
+                            case "Start new game": 
+                                
+                            break;
+                            case "Save current game":
+                                
+                            break;
+                            case "Load saved game": 
+
+                            break;
+                            case "Search":
+                                
+                            break;            
+                            case "Check if you have alredy win": 
+                                
+                            break;  
+                            case "Exit": System.exit(0);
+                            break;
+                    }
+            }   
+    }//End actionPerformed
+
+
 }
