@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+
 /**
  *
  * @author Emilio Águila Escalante - 163009
@@ -30,7 +31,7 @@ public class Sudoku extends JFrame implements ActionListener{
     JMenu menu;
     public int counter=0;
     public JButton[][] botones;
-    
+    public Cerebro brain;
     
     public static void main(String[] args) {
            Sudoku frame= new Sudoku();
@@ -170,7 +171,25 @@ public class Sudoku extends JFrame implements ActionListener{
                 String menuText = clickedMenu.getText();  
                        switch(menuText){
                             case "Start new game": 
-                                
+                                brain=new Cerebro();
+                                brain.startG();
+                                                for (int i = 0; i < 9; i++)
+                                                {
+                                                        for (int j = 0; j < 9; j++)
+                                                        {
+                                                           int v;
+                                                           v=brain.matrixI[i][j];
+                                                            if(v==0){
+                                                            botones[i][j].setText(""); 
+                                                            botones[i][j].setBackground(new java.awt.Color(255, 255, 255));                                                              
+                                                            }
+                                                            else{
+                                                            botones[i][j].setEnabled(false); 
+                                                            botones[i][j].setForeground(Color.black);
+                                                            botones[i][j].setText(Integer.toString(brain.matrixI[i][j]));
+                                                            }
+                                                    }
+                                                 }                                 
                             break;
                             case "Save current game":
                                 
