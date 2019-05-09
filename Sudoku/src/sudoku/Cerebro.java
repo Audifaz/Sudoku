@@ -30,13 +30,34 @@ public class Cerebro {
     }
     
     public void startG(){
-           for (int i = 0; i < 9; i++)
-                {
-                    for (int j = 0; j < 9; j++)
-                    {
-                            matrixI[i][j]=(int)((Math.random())*10);       
-                    }
+           File f = new File("C:\\Users\\LIVERPOOL I5\\Documents\\NetBeansProjects\\Sudoku\\src\\sudoku\\Matrizinicial.txt");
 
+		Scanner s;
+		try {	
+                    //cargamos el archivo con la clase Scan
+                    s  = new Scanner(f);
+                    //Impirmimos el contenido
+			
+                                for (int i = 0; i < 9; i++){
+                                        for (int j = 0; j < 9; j++){
+                                            if (s.hasNextLine())
+                                            {
+                                                matrixI[i][j] =  s.nextInt(); 
+                                             System.out.println("  "+matrixI[i][j]);  
+                                            }
+
+                                    }
+                                }
+				
+			
+			s.close();
+                         for (int i = 0; i < 9; i++){
+                                        for (int j = 0; j < 9; j++){
+                                            System.out.println("  "+matrixI[i][j]);   
+                                    }
+                                }
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
                 }
       
     }
