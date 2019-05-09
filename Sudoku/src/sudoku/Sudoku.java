@@ -119,10 +119,10 @@ public class Sudoku extends JFrame implements ActionListener{
                         
                         Font font = new Font("Arial", Font.BOLD, 19);
                         btnNuevo.setFont(font);                        
-                        MatrizBotones[i][j] = btnNuevo;
-                        contentPane.add(MatrizBotones[i][j]);
-                        MatrizBotones[i][j].setBounds(a,b,buttonW,buttonH);
-                        MatrizBotones[i][j].addActionListener(this);
+                        botones[i][j] = btnNuevo;
+                        contentPane.add(botones[i][j]);
+                        botones[i][j].setBounds(a,b,buttonW,buttonH);
+                        botones[i][j].addActionListener(this);
                         
                         if(a % 3 ==0||a % 5 == 0){
                             a=a+1;
