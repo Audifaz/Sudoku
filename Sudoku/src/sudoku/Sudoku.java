@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 
@@ -192,7 +194,17 @@ public class Sudoku extends JFrame implements ActionListener{
                                                  }                                 
                             break;
                             case "Save current game":
-                                
+                                try {
+                        for(int i= 0 ;i<9;i++){
+                            for(int j= 0;j<9;j++){
+                                brain.matrizPP[i][j]=botones[i][j].getText();
+                            }
+                             
+                        }
+                        brain.saveG();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Sudoku.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                             break;
                             case "Load saved game": 
 
