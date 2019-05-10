@@ -6,9 +6,14 @@
 
 package sudoku;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import static java.lang.Math.random;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.file.Files;
 
 /**
  *
@@ -20,13 +25,15 @@ import java.util.Scanner;
 
 public class Cerebro {
     public int[][] matrixI, matrixP, matrixS;
+    public String[][] matrizPP;
     public File archivo;
     public Scanner lector;
     
     public Cerebro(){
         matrixI=new int[9][9];
         matrixS=new int[9][9];
-        matrixP=new int[9][9];        
+        matrixP=new int[9][9];     
+	matrizPP= new String[9][9];
     }
     
     public void startG(){
@@ -62,10 +69,49 @@ public class Cerebro {
       
     }
     
-    public void saveG(){
+    public void saveG ()throws IOException{
+
+        // https://www.programcreek.com/2011/03/java-write-to-a-file-code-example/
         
-      
+        File fnew=new File("C:\\Users\\jorge\\Documents\\NetBeansProjects\\sudoku\\src\\sudoku\\partida.txt");
+        String source;
+        FileOutputStream fos = new FileOutputStream(fnew);
+ 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        
+                    
+                    //c
+         try{
+       
+
+        for (int i = 0; i < 9; i++){
+
+            for (int j = 0; j < 9; j++){
+                
+                if ( matrizPP[i][j].equals("")){
+                source = "0";
+                } else{
+                source = matrizPP[i][j];;
+                
+                } 
+
+        bw.write(source);
+        bw.newLine();
+  
+          
+            }
+            
+        }
+        
+        bw.close();
+
+         }catch (IOException e) {
+
+			e.printStackTrace();
+
+                }
+
     }    
+
     
     public void loadG(){
         
