@@ -112,6 +112,7 @@ public class Cerebro {
 			e.printStackTrace();
                 }
     }
+	// El siguiente codigo fue inspirado en: DeCodigo. (n.d.). Java – Crear archivos de texto. Recuperado de: http://www.decodigo.com/java-crear-archivos-de-texto
    public void saveG(){
         try {
             String ruta = "Matrizpartida.txt";
