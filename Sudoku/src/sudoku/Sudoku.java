@@ -30,7 +30,7 @@ public class Sudoku extends JFrame implements ActionListener{
     public final int frameYOrigin = 100;
     public final int buttonW =60;
     public final int buttonH =59;    
-    JMenu menu;
+    public JMenu menu;
     public int counter=0;
     public JButton[][] botones;
     public Cerebro brain;
