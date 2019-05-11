@@ -34,6 +34,8 @@ public class Sudoku extends JFrame implements ActionListener{
     public int counter=0;
     public JButton[][] botones;
     public Cerebro brain;
+    public int correctas;
+    public String [][] matrixtemp;
     
     public static void main(String[] args) {
            Sudoku frame= new Sudoku();
@@ -163,7 +165,8 @@ public class Sudoku extends JFrame implements ActionListener{
                                             counter=Integer.parseInt(buttonText)+1;
                                         }
                                         if( !buttonText.equals("0")){            
-                                                clickedButton.setText(Integer.toString(counter));       
+                                                clickedButton.setText(Integer.toString(counter));   
+                                                clickedButton.setForeground(Color.black); 
                                         }
                                 }
             }
@@ -194,26 +197,62 @@ public class Sudoku extends JFrame implements ActionListener{
                                                  }                                 
                             break;
                             case "Save current game":
-                                try {
-                        for(int i= 0 ;i<9;i++){
-                            for(int j= 0;j<9;j++){
-                                brain.matrizPP[i][j]=botones[i][j].getText();
-                            }
-                             
-                        }
-                        brain.saveG();
-                    } catch (IOException ex) {
-                        Logger.getLogger(Sudoku.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                                for (int i = 0; i < 9; i++){
+                                        for (int j = 0; j < 9; j++){
+                                            String a;
+                                            a = botones[i][j].getText();
+                                            if(a.equals ("")){      
+                                               brain.matrixP[i][j] = "0";
+                                            }
+                                            else{
+                                                brain.matrixP[i][j]= botones[i][j].getText();
+                                            }
+                                    }
+                                }
+                                brain.saveG();
                             break;
                             case "Load saved game": 
-
-                            break;
-                            case "Search":
-                                
-                            break;            
+                            brain.loadG();
+                                for (int i = 0; i < 9; i++){
+                                        for (int j = 0; j < 9; j++){
+                                    int v;
+                                                           v = Integer.parseInt(brain.matrixP[i][j]);
+                                                            if(v == 0){
+                                                            botones[i][j].setText(""); 
+                                                            botones[i][j].setBackground(new java.awt.Color(255, 255, 255));                                                              
+                                                            }
+                                                            else{
+                                                            botones[i][j].setForeground(Color.black);
+                                                            botones[i][j].setText(brain.matrixP[i][j]);
+                                                            }
+                                        }
+                                }
+                            break;                                   
                             case "Check if you have alredy win": 
-                                
+                                 correctas = 0;
+                                brain.matrizsolución();
+    
+                               for(int i = 0; i < 9; i++){
+                                    for(int j = 0; j < 9; j++){
+                                        matrixtemp [i][j] = Integer.toString(brain.matrixS[i][j]);
+                                        //System.out.println(matrixtemp[i][j]);
+                                            if(matrixtemp [i][j].equals(brain.matrixP[i][j])){
+                                                    
+                                                    correctas ++;
+                                                }
+                                           else{
+                                                    botones[i][j].setForeground(Color.red); 
+                                                }
+                                        } 
+                                }
+                               
+                                 if(correctas == 81){
+                                    JOptionPane.showMessageDialog(null,"Has ganado");
+                                    
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(null,"Vuelvelo a intentar");
+                                }
                             break;  
                             case "Exit": System.exit(0);
                             break;
