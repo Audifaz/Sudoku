@@ -108,6 +108,7 @@ public class Sudoku extends JFrame implements ActionListener{
         /* End Menus */
         /*Buttons*/
         int i, j, a,b;
+        matrixTemp = new String[9][9];        
         botones = new JButton[9][9];
         a=25;
         b=24;
@@ -142,6 +143,8 @@ public class Sudoku extends JFrame implements ActionListener{
                     j=1;
                 }
         /*End Buttons*/
+ 
+                                brain=new Cerebro();       
         setDefaultCloseOperation( EXIT_ON_CLOSE ); 
     }
     
@@ -176,7 +179,6 @@ public class Sudoku extends JFrame implements ActionListener{
                 String menuText = clickedMenu.getText();  
                        switch(menuText){
                             case "Start new game": 
-                                brain=new Cerebro();
                                 brain.startG();
                                                 for (int i = 0; i < 9; i++)
                                                 {
@@ -212,7 +214,24 @@ public class Sudoku extends JFrame implements ActionListener{
                                 brain.saveG();
                             break;
                             case "Load saved game": 
-                            brain.loadG();
+                                                for (int i = 0; i < 9; i++)
+                                                {
+                                                        for (int j = 0; j < 9; j++)
+                                                        {
+                                                           int v;
+                                                           v=brain.matrixI[i][j];
+                                                            if(v==0){
+                                                            botones[i][j].setText(""); 
+                                                            botones[i][j].setBackground(new java.awt.Color(255, 255, 255));                                                              
+                                                            }
+                                                            else{
+                                                            botones[i][j].setEnabled(false); 
+                                                            botones[i][j].setForeground(Color.black);
+                                                            botones[i][j].setText(Integer.toString(brain.matrixI[i][j]));
+                                                            }
+                                                    }
+                                                 }                              
+                               brain.loadG();
                                 for (int i = 0; i < 9; i++){
                                         for (int j = 0; j < 9; j++){
                                     int v;
@@ -229,15 +248,25 @@ public class Sudoku extends JFrame implements ActionListener{
                                 }
                             break;                                   
                             case "Check if you have alredy win": 
-                                 correctas = 0;
+                            correctas = 0;
+                                for (int i = 0; i < 9; i++){
+                                        for (int j = 0; j < 9; j++){
+                                            String a;
+                                            a = botones[i][j].getText();
+                                            if(a.equals ("")){      
+                                               brain.matrixP[i][j] = "0";
+                                            }
+                                            else{
+                                                brain.matrixP[i][j]= botones[i][j].getText();
+                                            }
+                                    }
+                                }
                                 brain.matrizsolución();
-    
                                for(int i = 0; i < 9; i++){
                                     for(int j = 0; j < 9; j++){
-                                        matrixtemp [i][j] = Integer.toString(brain.matrixS[i][j]);
+                                        matrixTemp [i][j] = Integer.toString(brain.matrixS[i][j]);
                                         //System.out.println(matrixtemp[i][j]);
-                                            if(matrixtemp [i][j].equals(brain.matrixP[i][j])){
-                                                    
+                                            if(matrixTemp [i][j].equals(brain.matrixP[i][j])){
                                                     correctas ++;
                                                 }
                                            else{
@@ -248,10 +277,12 @@ public class Sudoku extends JFrame implements ActionListener{
                                
                                  if(correctas == 81){
                                     JOptionPane.showMessageDialog(null,"Has ganado");
+                                    correctas=0;
                                     
                                 }
                                 else{
                                     JOptionPane.showMessageDialog(null,"Vuelvelo a intentar");
+                                    correctas=0;
                                 }
                             break;  
                             case "Exit": System.exit(0);
