@@ -261,7 +261,7 @@ public class Sudoku extends JFrame implements ActionListener{
                                             }
                                     }
                                 }
-                                brain.matrizsolución();
+                                brain.matrizSolucion();
                                for(int i = 0; i < 9; i++){
                                     for(int j = 0; j < 9; j++){
                                         matrixTemp [i][j] = Integer.toString(brain.matrixS[i][j]);
