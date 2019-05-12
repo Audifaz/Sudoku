@@ -35,7 +35,7 @@ public class Sudoku extends JFrame implements ActionListener{
     public JButton[][] botones;
     public Cerebro brain;
     public int correctas;
-    public String [][] matrixtemp;
+    public String [][] matrixTemp;
     
     public static void main(String[] args) {
            Sudoku frame= new Sudoku();
