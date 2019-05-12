@@ -270,7 +270,14 @@ public class Sudoku extends JFrame implements ActionListener{
                                                     correctas ++;
                                                 }
                                            else{
+                                                    String a;
+                                            a = botones[i][j].getText();
+                                                if(a.equals ("")){
+                                                    botones[i][j].setForeground(Color.black);
+                                                }
+                                                else{
                                                     botones[i][j].setForeground(Color.red); 
+                                                }
                                                 }
                                         } 
                                 }
