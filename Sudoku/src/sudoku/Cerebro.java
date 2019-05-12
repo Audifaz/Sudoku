@@ -60,7 +60,7 @@ public class Cerebro {
 			e.printStackTrace();
                 }
     }
-    public void matrizsolución(){
+    public void matrizSolucion(){
         File f = new File("Matrizsolucion.txt");
 
 		Scanner s;
