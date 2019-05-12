@@ -92,7 +92,7 @@ public class Sudoku extends JFrame implements ActionListener{
         //
         menu.addSeparator();
         //
-        item = new JMenuItem("Check if you have alredy win");
+        item = new JMenuItem("Check if you have already win");
         item.addActionListener(this);
         menu.add(item); 
         //
@@ -247,7 +247,7 @@ public class Sudoku extends JFrame implements ActionListener{
                                         }
                                 }
                             break;                                   
-                            case "Check if you have alredy win": 
+                            case "Check if you have already win": 
                             correctas = 0;
                                 for (int i = 0; i < 9; i++){
                                         for (int j = 0; j < 9; j++){
